@@ -1,25 +1,5 @@
-import '../../../core/constant.dart';
 import '../../../core/services/attendance_service.dart';
 import '../../../core/services/wifi_services.dart';
-
-// class AttendanceRepository {
-//   final WifiService _wifiService;
-//   final AttendanceService _attendanceService;
-
-//   AttendanceRepository(this._wifiService, this._attendanceService);
-
-//   Future<bool> checkAndMarkAttendance() async {
-//     final ssid = await _wifiService.getCurrentSSID();
-//     final alreadyMarked = await _attendanceService.hasMarkedAttendanceToday();
-
-//     if (ssid == 'Taghyeer' && !alreadyMarked) {
-//       await _attendanceService.markAttendance();
-//       return true;
-//     }
-
-//     return false;
-//   }
-// }
 
 class AttendanceRepository {
   final WifiService _wifiService;

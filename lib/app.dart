@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wifi_attendance/features/attendance/presentation/AttendanceHistoryPage.dart';
 import 'features/attendance/data/attendance_repository.dart';
 import 'features/attendance/logic/attendance_bloc.dart';
-import 'features/attendance/presentation/attendance_screen.dart';
+// import 'features/attendance/presentation/attendance_screen.dart';
 
 class MyApp extends StatelessWidget {
   final AttendanceRepository repository;
@@ -17,9 +18,9 @@ class MyApp extends StatelessWidget {
         repository.attendanceService, // Pass AttendanceService directly
       ),
       child: MaterialApp(
-        title: 'Wi-Fi Attendance',
-        home: AttendanceScreen(),
-      ),
+          title: 'Wi-Fi Attendance',
+          // home: AttendanceScreen(),
+          home: AttendanceScreen()),
     );
   }
 }

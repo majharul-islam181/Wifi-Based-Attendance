@@ -42,7 +42,6 @@
 //     }
 //   }
 // }
-
 import 'package:permission_handler/permission_handler.dart';
 import 'package:wifi_info_flutter/wifi_info_flutter.dart';
 
@@ -50,28 +49,29 @@ class WifiService {
   final String companySsid = 'Taghyeer';
 
   Future<String?> getCurrentSSID() async {
-    var status = await Permission.location.request();
-    if (!status.isGranted) {
-      print("Location permission is not granted. Cannot fetch SSID.");
-      return null;
-    }
-
     try {
-      final ssid = await WifiInfo().getWifiName();
-      print("Current Wi-Fi SSID: $ssid");
-      return ssid;
+      var status = await Permission.location.status;
+      if (!status.isGranted) {
+        print("Location permission not granted → returning null.");
+        return null;
+      }
+
+      final wifiInfo = WifiInfo();
+      final wifiName = await wifiInfo.getWifiName();
+
+      print("Current Wi-Fi SSID: $wifiName");
+      return wifiName;
     } catch (e) {
       print("Error fetching SSID: $e");
       return null;
     }
   }
 
-  // Method to automatically check and mark attendance if connected to company Wi-Fi
   Future<bool> checkAndMarkAttendance() async {
     final ssid = await getCurrentSSID();
     if (ssid == companySsid) {
-      return true; // Connected to company Wi-Fi
+      return true;
     }
-    return false; // Not connected to company Wi-Fi
+    return false;
   }
 }
